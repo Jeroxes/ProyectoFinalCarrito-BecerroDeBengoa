@@ -8,12 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnBorrarTodo = document.getElementById('btn-borrar-todo');
     const carritoContenedor = document.getElementById('carrito-contenedor');
     const precioTotal = document.getElementById('precioTotal');
-    const contadorCarrito = document.getElementById('contador-carrito');
 
-    function actualizarContadorCarrito() {
-        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        contadorCarrito.textContent = carrito.length; 
-    }
   
     btnBorrarTodo.addEventListener('click', function() {
     
@@ -22,15 +17,20 @@ document.addEventListener('DOMContentLoaded', function() {
      precioTotal.textContent = '0';
 
      localStorage.removeItem('carrito');
-  
-
+     carrito.map((p)=> {
+       p.cantidad = 1
+      })
+      carrito = []
+      actualizarContadorCarrito()
     });
   });
 
   function cargarCarrito() {
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const carritoContenedor = document.getElementById('carrito-contenedor');
+    const precioTotal = document.getElementById('precioTotal');
     
-    
+
     carritoContenedor.innerHTML = ''; 
 
     let total = 0;
@@ -44,23 +44,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     actualizarContadorCarrito();
   }
+  function actualizarContadorCarrito() {
+    const contadorCarrito = document.getElementById('contador-carrito');
+      let cantidadCarrito = 0
+      if(carrito == []){
+        cantidadCarrito = carrito.map((p)=>{
+          cantidadCarrito + p.cantidad
+       })
+      }
 
-  btnBorrarTodo.addEventListener('click', function() {
-    
-    carritoContenedor.innerHTML = '';
-
-   
-    precioTotal.textContent = '0';
-
- 
-    localStorage.removeItem('carrito');
-
-  
-    actualizarContadorCarrito();
-  });
-
-  
+      contadorCarrito.textContent = cantidadCarrito
+}
   cargarCarrito();
+
 
 
 

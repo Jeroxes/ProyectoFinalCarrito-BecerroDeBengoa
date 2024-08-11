@@ -17,3 +17,12 @@ const pintarProductos = (data) => {
       contenedor.appendChild(div);
     });
   };
+  
+  
+  fetch('../data/stock.json')
+  .then((Response) => Response.json())
+  .then((data) => {
+    productos = data
+    pintarProductos(productos)
+  })
+let productos = []

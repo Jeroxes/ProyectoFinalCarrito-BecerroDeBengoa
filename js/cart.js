@@ -5,11 +5,13 @@ const productoContenedor = document.getElementById('producto-contenedor');
 productoContenedor.addEventListener('click', (event) => {
   if (event.target.classList.contains('agregar')) {
     validarProductoCarrito(event.target.id);
+   
   }
 });
 
+
 const validarProductoCarrito = (productoId) => {
-  const estaRepetido = carrito.some((producto) => producto.id == productoId);
+  const estaRepetido = carrito.find((producto) => producto.id == productoId);
 
   if (estaRepetido) {
     const producto = carrito.find((producto) => producto.id == productoId);
@@ -22,6 +24,13 @@ const validarProductoCarrito = (productoId) => {
     carrito.push(producto);
     pintarProductoCarrito(producto);
     actualizarTotalCarrito(carrito);
+    Toastify({
+
+      text: "Has agregado tu juego a tu carrito",
+      
+      duration: 3000
+      
+      }).showToast();
   }
 };
 

@@ -6,6 +6,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  background-color: rgba(1, 40, 66, 0.767);
 }
 
 img {
@@ -19,7 +20,7 @@ header {
   justify-content: space-around;
   align-items: center;
   padding: 20px 10%;
-  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+  box-shadow: rgba(22, 6, 6, 0.89) 0px 3px 12px;
  
 }
 
